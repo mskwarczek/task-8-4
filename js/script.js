@@ -64,11 +64,11 @@ function giveRoundResult (playMove, compMove) {
 // Check for winner of the entire game.
 function gameEnd () {
 	if (playerPoints === limitOfRounds) {
-		writeText(playerName + ' won the the entire game!');
+		writeText(playerName + ' won the the entire game!<br>');
 		newGameActive = false;
 	}
 	if (computerPoints === limitOfRounds) {
-		writeText('Computer won the entire game!');
+		writeText('Computer won the entire game!<br>');
 		newGameActive = false;
 	}
 }
@@ -93,14 +93,25 @@ function playerMove (button) {
 		gameEnd();
 	}
 	else {
-		writeText('Click New Game first');
+		writeText('Click New Game first<br>');
 	}
+}
+
+// Clear output and result sections.
+function clearText () {
+	output.innerHTML = "";
+	result.innerHTML = "";
 }
 
 // Start a new game.
 function newGame () {
+	clearText();
+	roundNumber = 0;
+	playerPoints = 0;
+	computerPoints = 0;
+	limitOfRounds = 0;
 	playerName = window.prompt('Player name: ');
-	limitOfRounds = window.prompt('Total number of rounds needed to win the entire game: ');
+	limitOfRounds = window.prompt('Total number of wins needed to win the entire game: ');
 	limitOfRounds = parseInt(limitOfRounds);
 	newGameActive = true;
 }
