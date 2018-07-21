@@ -76,16 +76,17 @@ function gameEnd () {
 // Count current round number and points of each player.
 function countPoints (roundResult) {
 	switch (roundResult) {
-		case -1: ++roundNumber; ++computerPoints; break;
-		case 0: ++roundNumber; break;
-		case 1: ++roundNumber; ++playerPoints; break;
+		case -1: ++computerPoints; break;
+		case 0: break;
+		case 1: ++playerPoints; break;
 	}
+	++roundNumber;
 	result.innerHTML = '<br>Round: ' + roundNumber + ' Rounds to win: ' + limitOfRounds + '<br>' + playerName + ' ' + playerPoints + ' - ' + computerPoints + ' Computer';
 }
 
 // Begin new round of game.
 function playerMove (button) {
-	if (newGameActive === true) {
+	if (newGameActive) {
 		var playMove = button.id;
 		var compMove = computerMove();
 		var roundResult = giveRoundResult(playMove, compMove);
